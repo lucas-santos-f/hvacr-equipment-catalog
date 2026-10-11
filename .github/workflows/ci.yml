@@ -1,0 +1,84 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements-dev.txt
+      - name: lint
+        run: ruff check app tests
+      - name: unit tests
+        run: pytest tests -q --ignore=tests/integration
+      - name: integration tests
+        run: pytest tests/integration -q
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+
+  compose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: bring the whole stack up
+        run: docker compose up -d --build
+      - name: wait for the api
+        run: |
+          for i in $(seq 1 30); do
+            if curl -fs http://localhost:8000/health; then exit 0; fi
+            sleep 2
+          done
+          docker compose logs
+          exit 1
+      - name: the catalogue is seeded and queryable
+        run: |
+          total=$(curl -fs 'http://localhost:8000/equipment?limit=1' | python -c 'import sys,json; print(json.load(sys.stdin)["total"])')
+          test "$total" -eq 90
+      - name: the frontend is served
+        run: curl -fs http://localhost:8080 > /dev/null
+      - if: always()
+        run: docker compose down -v
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install pip-audit bandit
+      - name: dependency audit
+        run: pip-audit -r backend/requirements.txt
+      - name: static analysis
+        run: bandit -q -r backend/app
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+      - name: npm audit
+        working-directory: frontend
+        run: npm audit --audit-level=high
