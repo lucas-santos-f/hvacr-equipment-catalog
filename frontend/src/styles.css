@@ -1,0 +1,114 @@
+:root {
+  --bg: #ffffff;
+  --fg: #16191d;
+  --muted: #5d656e;
+  --line: #d8dde3;
+  --accent: #0b5f3a;
+  --accent-bg: #e3f3ea;
+  --error: #8a1c1c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14171a;
+    --fg: #e8eaed;
+    --muted: #98a1ab;
+    --line: #2c3238;
+    --accent: #5fd39b;
+    --accent-bg: #163024;
+    --error: #ef8f8f;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 15px/1.5 system-ui, -apple-system, Segoe UI, sans-serif;
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px 80px;
+}
+
+h1 { font-size: 1.5rem; margin-bottom: 4px; }
+header p { color: var(--muted); margin-top: 0; }
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+  padding: 16px 0;
+  border-block: 1px solid var(--line);
+}
+
+.filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+select, input, button {
+  font: inherit;
+  padding: 6px 8px;
+  background: var(--bg);
+  color: var(--fg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+input[type="number"] { width: 100px; }
+button { cursor: pointer; }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+th, td {
+  text-align: left;
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+thead th { font-size: 0.78rem; text-transform: uppercase; color: var(--muted); }
+tr.picked { background: var(--accent-bg); }
+td.best { color: var(--accent); font-weight: 600; }
+
+.tray {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 0;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+}
+
+.hint { color: var(--muted); font-size: 0.85rem; }
+.error { color: var(--error); }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+@media (max-width: 700px) {
+  section:has(table) { overflow-x: auto; }
+}
