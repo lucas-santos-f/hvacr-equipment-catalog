@@ -1,0 +1,9 @@
+line-length = 100
+target-version = "py312"
+
+[lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[lint.per-file-ignores]
+# Depends(...) in a default argument is how FastAPI declares dependencies.
+"app/routers/*.py" = ["B008"]
