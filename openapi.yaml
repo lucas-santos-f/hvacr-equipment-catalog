@@ -1,0 +1,413 @@
+openapi: 3.1.0
+info:
+  title: HVAC-R Equipment Catalogue
+  description: Search and compare cooling and heating equipment by duty, refrigerant
+    and price.
+  version: 1.0.0
+paths:
+  /health:
+    get:
+      tags:
+      - meta
+      summary: Health
+      operationId: health_health_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /facets:
+    get:
+      tags:
+      - meta
+      summary: Facets
+      description: Distinct values the frontend needs to build its filter dropdowns.
+      operationId: facets_facets_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /equipment:
+    get:
+      tags:
+      - equipment
+      summary: Search
+      operationId: search_equipment_get
+      parameters:
+      - name: category
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/Category'
+          - type: 'null'
+          title: Category
+      - name: refrigerant
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Refrigerant
+      - name: manufacturer
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Manufacturer
+      - name: min_capacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+            minimum: 0
+          - type: 'null'
+          title: Min Capacity
+      - name: max_capacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+            minimum: 0
+          - type: 'null'
+          title: Max Capacity
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 200
+          minimum: 1
+          default: 50
+          title: Limit
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+          title: Offset
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EquipmentPage'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    post:
+      tags:
+      - equipment
+      summary: Add
+      operationId: add_equipment_post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EquipmentCreate'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EquipmentRead'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /equipment/compare:
+    get:
+      tags:
+      - equipment
+      summary: Compare
+      operationId: compare_equipment_compare_get
+      parameters:
+      - name: models
+        in: query
+        required: true
+        schema:
+          type: string
+          description: Comma separated model codes, 2 to 4
+          title: Models
+        description: Comma separated model codes, 2 to 4
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comparison'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /equipment/{model}:
+    get:
+      tags:
+      - equipment
+      summary: Detail
+      operationId: detail_equipment__model__get
+      parameters:
+      - name: model
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Model
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EquipmentRead'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    Category:
+      type: string
+      enum:
+      - chiller
+      - compressor
+      - heat_exchanger
+      - circulator_pump
+      - fan_coil
+      title: Category
+    Comparison:
+      properties:
+        models:
+          items:
+            type: string
+          type: array
+          title: Models
+        rows:
+          items:
+            $ref: '#/components/schemas/ComparisonRow'
+          type: array
+          title: Rows
+      type: object
+      required:
+      - models
+      - rows
+      title: Comparison
+    ComparisonRow:
+      properties:
+        field:
+          type: string
+          title: Field
+        values:
+          additionalProperties:
+            anyOf:
+            - type: number
+            - type: string
+            - type: 'null'
+          type: object
+          title: Values
+        best:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Best
+      type: object
+      required:
+      - field
+      - values
+      - best
+      title: ComparisonRow
+    EquipmentCreate:
+      properties:
+        model:
+          type: string
+          maxLength: 80
+          title: Model
+        manufacturer:
+          type: string
+          maxLength: 80
+          title: Manufacturer
+        category:
+          $ref: '#/components/schemas/Category'
+        refrigerant:
+          type: string
+          maxLength: 20
+          title: Refrigerant
+        capacity_kw:
+          type: number
+          exclusiveMinimum: 0.0
+          title: Capacity Kw
+        power_input_kw:
+          type: number
+          exclusiveMinimum: 0.0
+          title: Power Input Kw
+        voltage:
+          type: string
+          maxLength: 20
+          title: Voltage
+        sound_pressure_db:
+          type: number
+          minimum: 0.0
+          title: Sound Pressure Db
+        weight_kg:
+          type: number
+          exclusiveMinimum: 0.0
+          title: Weight Kg
+        price_eur:
+          type: number
+          minimum: 0.0
+          title: Price Eur
+      type: object
+      required:
+      - model
+      - manufacturer
+      - category
+      - refrigerant
+      - capacity_kw
+      - power_input_kw
+      - voltage
+      - sound_pressure_db
+      - weight_kg
+      - price_eur
+      title: EquipmentCreate
+    EquipmentPage:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/EquipmentRead'
+          type: array
+          title: Items
+        total:
+          type: integer
+          title: Total
+        limit:
+          type: integer
+          title: Limit
+        offset:
+          type: integer
+          title: Offset
+      type: object
+      required:
+      - items
+      - total
+      - limit
+      - offset
+      title: EquipmentPage
+    EquipmentRead:
+      properties:
+        model:
+          type: string
+          maxLength: 80
+          title: Model
+        manufacturer:
+          type: string
+          maxLength: 80
+          title: Manufacturer
+        category:
+          $ref: '#/components/schemas/Category'
+        refrigerant:
+          type: string
+          maxLength: 20
+          title: Refrigerant
+        capacity_kw:
+          type: number
+          exclusiveMinimum: 0.0
+          title: Capacity Kw
+        power_input_kw:
+          type: number
+          exclusiveMinimum: 0.0
+          title: Power Input Kw
+        voltage:
+          type: string
+          maxLength: 20
+          title: Voltage
+        sound_pressure_db:
+          type: number
+          minimum: 0.0
+          title: Sound Pressure Db
+        weight_kg:
+          type: number
+          exclusiveMinimum: 0.0
+          title: Weight Kg
+        price_eur:
+          type: number
+          minimum: 0.0
+          title: Price Eur
+        id:
+          type: integer
+          title: Id
+        cop:
+          type: number
+          title: Cop
+      type: object
+      required:
+      - model
+      - manufacturer
+      - category
+      - refrigerant
+      - capacity_kw
+      - power_input_kw
+      - voltage
+      - sound_pressure_db
+      - weight_kg
+      - price_eur
+      - id
+      - cop
+      title: EquipmentRead
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
