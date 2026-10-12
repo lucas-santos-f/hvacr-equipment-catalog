@@ -100,3 +100,10 @@ not in the app.
 **Error detail is returned to the client.** `ApiError` surfaces the backend's `detail`
 string. Every one of those strings is written by hand in a router and none contains
 anything internal, but that is a convention, not an enforced boundary.
+
+## Exposure audit, 12 October 2026
+
+Dependency scanning says nothing about what the deployment exposes. A separate audit of
+the live services is in [exposure-audit.md](exposure-audit.md); it found two high
+severity issues that no scanner in this list would have reported - an unauthenticated
+write route and a database port open to the internet - and both are now fixed.

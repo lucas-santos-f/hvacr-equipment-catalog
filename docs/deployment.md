@@ -91,8 +91,31 @@ curl 'https://<backend>/equipment?limit=1'
 `total` should be 90. If it is 0, `SEED_ON_STARTUP` is off or the data file did not make
 it into the image.
 
+## Hardening that is not in the blueprint
+
+Two things have to be done in the dashboard, because `render.yaml` cannot express them.
+Both are part of the deployment, so they belong in this checklist.
+
+**Close the database to the internet.** A new Render workspace allows inbound Postgres
+traffic from `0.0.0.0/0`. Database > Networking > Inbound IP Restrictions: delete the
+`0.0.0.0/0` source and save, leaving no external sources. The API connects over the
+internal hostname that `fromDatabase.connectionString` provides, which is a private
+address, so the service is unaffected. Verify from outside Render:
+
+```bash
+# should hang or refuse, not connect
+timeout 10 bash -c 'exec 3<>/dev/tcp/<db-host>.oregon-postgres.render.com/5432' && echo OPEN || echo CLOSED
+```
+
+**Read the write key.** `API_KEY` is minted by `generateValue`, so nobody typed it and it
+is not in the repository. Service `hvacr-catalog-api` > Environment > `API_KEY` to read
+it when you need to POST a unit. Rotating it is a matter of deleting the value and
+re-syncing the blueprint.
+
+Both are written up in [../security/exposure-audit.md](../security/exposure-audit.md).
+
 ## Anywhere else
 
 Nothing here is Render-specific beyond the deploy hooks. `docker compose up` is the
-whole system; Fly.io, Railway or a VPS need the same three environment variables and the
+whole system; Fly.io, Railway or a VPS need the same four environment variables and the
 same ordering.
