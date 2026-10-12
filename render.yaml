@@ -11,6 +11,7 @@
 databases:
   - name: hvacr-catalog-db
     plan: free
+    region: oregon
     databaseName: catalog
     user: catalog
 
@@ -19,7 +20,7 @@ services:
     name: hvacr-catalog-api
     runtime: docker
     plan: free
-    region: frankfurt
+    region: oregon
     rootDir: backend
     dockerfilePath: ./Dockerfile
     healthCheckPath: /health
