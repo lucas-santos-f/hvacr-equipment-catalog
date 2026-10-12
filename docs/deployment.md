@@ -1,7 +1,36 @@
 # Deployment
 
-Not deployed yet. These are the steps, verified as far as they can be without an
-account.
+Live at https://hvacr-catalog-web.onrender.com, API at
+https://hvacr-catalog-api.onrender.com.
+
+Deployed as a Render **blueprint**: `render.yaml` at the repo root declares the
+database, the API and the static site, and Render creates all three from it. That is
+the path to use. The click-by-click route below is kept for anyone deploying somewhere
+else.
+
+## Blueprint
+
+Render dashboard > New > Blueprint, point it at this repository, name it, deploy. The
+file does the rest.
+
+Two things that went wrong the first time, both now fixed in `render.yaml` and written
+up in [../ops/runbook.md](../ops/runbook.md):
+
+- **Region.** The database had no `region`, so Render put it in Oregon while the API
+  went to Frankfurt. `fromDatabase` hands out an internal hostname that only resolves
+  within one region, so the API could not connect and exited. Every resource now names
+  its region explicitly.
+- **Cross-service URLs.** `fromService ... property: host` resolves to the bare service
+  name, not the public hostname, so the frontend ended up calling
+  `https://hvacr-catalog-api/facets`. Both URLs are now literals in `render.yaml`.
+
+A blueprint created from a **public repository URL** rather than a connected GitHub
+account does not auto-sync on push. Use the sync hook on the blueprint's settings page,
+or connect the repo to Render's GitHub app.
+
+## Manual, service by service
+
+Use this for a provider without blueprint support.
 
 ## Render
 
