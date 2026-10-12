@@ -39,11 +39,26 @@ from the workspace default rather than chosen. Confirmed by opening TCP 5432 on 
 external hostname from a machine outside Render. Only the generated password stood in
 front of it, with no network layer and no brute-force protection.
 
-**Fixed** by removing the external rule in the Render dashboard. The API reaches the
-database over the internal hostname from `fromDatabase.connectionString`, which is a
-private-network address, so closing public access costs nothing. This is dashboard state,
-not blueprint state: Render does not express inbound IP rules in `render.yaml`, so it is
-recorded here and in `docs/deployment.md` instead of being enforced by the file.
+**Fixed** by blocking all inbound internet traffic on the database. Re-verified after
+the change: the server now hangs up after the startup packet instead of asking for a
+password, and the API still answers with all 90 units, because it reaches the database
+over the private internal hostname from `fromDatabase.connectionString`.
+
+Two things made this harder to get right than it looks, and both are worth knowing:
+
+- The first save silently did nothing. Deleting the row and pressing Save pops a
+  confirmation dialog that wants the phrase `block all internet traffic to PostgreSQL`
+  typed out. Until that is done the page still claims "All internet traffic is blocked"
+  while the rule is untouched, and a reload brings the row back. The verification probe
+  is what caught it; the dashboard's own wording would have been believed.
+- A TCP connect test is not a reachability test here. Render's edge completes the
+  handshake on 5432 whether or not the rule is on, so `/dev/tcp` reports the port open in
+  both states. Only speaking the Postgres startup protocol tells the two apart.
+
+This is dashboard state, not blueprint state: Render does not express inbound IP rules in
+`render.yaml`, so it is recorded here and in `docs/deployment.md` instead of being
+enforced by the file. The workspace-wide rule remains `0.0.0.0/0`; the rule on the
+resource is what applies.
 
 ## Checked and clean
 
