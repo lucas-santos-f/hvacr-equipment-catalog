@@ -76,3 +76,32 @@ Irrelevant now, because writes are rare and manual.
 There is nothing to back up. The catalogue is a file in the repository and the database
 rebuilds itself from it on an empty volume. If that stops being true, this section
 needs rewriting before the first real write lands.
+
+## Incident: API could not resolve the database host
+
+**Symptom.** First Render deploy failed with `Exited with status 3`. Deploy log ended in:
+
+```
+sqlalchemy.exc.OperationalError: (psycopg.OperationalError) [Errno -2] Name or service not known
+ERROR: Application startup failed. Exiting.
+==> No open ports detected, continuing to scan...
+```
+
+**Cause.** `render.yaml` set `region: oregon` on the web service but left the database
+with no region, so Render defaulted it to Oregon while the service went to Frankfurt.
+`fromDatabase: connectionString` hands out the **internal** hostname, which only
+resolves inside one region. The service came up, failed to open a connection during the
+lifespan handler, and exited before binding a port.
+
+**Fix.** Pin `region` on the database as well as the service, so the two cannot drift
+apart. Region is immutable on an existing Render service, so the web service had to be
+deleted and recreated by a blueprint sync; the database was already in the right place
+and was left alone.
+
+**Rule.** Every resource in `render.yaml` carries an explicit `region`. An omitted
+region is not "the same as the others", it is "whatever the provider picks today".
+
+**Why the failure was loud.** `app/main.py` does not wrap the lifespan handler in a
+`try`. The container refused to start instead of serving an empty catalogue, which is
+exactly the behaviour the earlier empty-catalogue incident was fixed to produce. Good
+failure, found in one log read.

@@ -1,12 +1,17 @@
-# Render blueprint. Creates the database, the API and the static frontend, and wires
-# the three together without anyone typing a URL into a dashboard.
+# Render blueprint. Creates the database, the API and the static frontend.
 #
-# Deploy: Render dashboard > New > Blueprint > pick this repo.
+# Deploy: Render dashboard > New > Blueprint > point it at this repo.
 #
-# The two cross-references below are why `normalise_database_url` and `normalise_origin`
-# exist in backend/app/config.py, and `normaliseBase` in frontend/src/api/client.js:
-# Render injects a bare hostname and a `postgres://` scheme, and the app adapts rather
-# than the config pretending it can concatenate strings.
+# Both services carry an explicit `region`. Leaving it off the database once put it in
+# Oregon while the API went to Frankfurt, and `fromDatabase` hands out an internal
+# hostname that only resolves inside one region, so the API could not start. See
+# ops/runbook.md.
+#
+# The two cross-service URLs are written out in full rather than wired with
+# `fromService`. That looked tempting but `property: host` resolves to the bare service
+# name (`hvacr-catalog-api`), not the public hostname, so the frontend ended up calling
+# https://hvacr-catalog-api/facets and got a 503. Render names services predictably, so
+# the literal URL is both correct and easier to read than an indirection that is wrong.
 
 databases:
   - name: hvacr-catalog-db
@@ -33,10 +38,7 @@ services:
       - key: SEED_ON_STARTUP
         value: "true"
       - key: CORS_ORIGINS
-        fromService:
-          name: hvacr-catalog-web
-          type: web
-          property: host
+        value: https://hvacr-catalog-web.onrender.com
 
   - type: web
     name: hvacr-catalog-web
@@ -47,10 +49,7 @@ services:
     autoDeploy: true
     envVars:
       - key: VITE_API_URL
-        fromService:
-          name: hvacr-catalog-api
-          type: web
-          property: host
+        value: https://hvacr-catalog-api.onrender.com
     routes:
       - type: rewrite
         source: /*
