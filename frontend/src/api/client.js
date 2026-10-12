@@ -1,7 +1,14 @@
 // Every call to the backend goes through this file. Components never build a URL
 // or touch fetch directly, so the base URL and error handling live in one place.
 
-const BASE = import.meta.env?.VITE_API_URL ?? 'http://localhost:8000'
+// Render can only inject a bare hostname into a build variable, so accept either form.
+function normaliseBase(value) {
+  if (!value) return 'http://localhost:8000'
+  const trimmed = value.trim().replace(/\/$/, '')
+  return /^https?:\/\//.test(trimmed) ? trimmed : `https://${trimmed}`
+}
+
+const BASE = normaliseBase(import.meta.env?.VITE_API_URL)
 
 export class ApiError extends Error {
   constructor(status, detail) {
@@ -41,4 +48,4 @@ export const api = {
   getFacets: () => request('/facets'),
 }
 
-export { query, BASE }
+export { query, BASE, normaliseBase }

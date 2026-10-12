@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
-import { ApiError, api, query } from '../src/api/client.js'
+import { ApiError, api, normaliseBase, query } from '../src/api/client.js'
 
 function mockFetch(status, body) {
   const fetchMock = vi.fn().mockResolvedValue({
@@ -72,5 +72,25 @@ describe('api', () => {
       },
     })
     await expect(api.getFacets()).rejects.toBeInstanceOf(ApiError)
+  })
+})
+
+describe('normaliseBase', () => {
+  it('defaults to the local backend when nothing is set', () => {
+    expect(normaliseBase(undefined)).toBe('http://localhost:8000')
+    expect(normaliseBase('')).toBe('http://localhost:8000')
+  })
+
+  it('assumes https for a bare hostname, which is what Render injects', () => {
+    expect(normaliseBase('api.onrender.com')).toBe('https://api.onrender.com')
+  })
+
+  it('leaves an explicit scheme alone', () => {
+    expect(normaliseBase('http://localhost:8000')).toBe('http://localhost:8000')
+    expect(normaliseBase('https://api.onrender.com')).toBe('https://api.onrender.com')
+  })
+
+  it('strips a trailing slash so paths do not double up', () => {
+    expect(normaliseBase('https://api.onrender.com/')).toBe('https://api.onrender.com')
   })
 })
