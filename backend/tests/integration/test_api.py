@@ -73,26 +73,26 @@ def test_facets_feed_the_filter_dropdowns(client):
     assert body["capacity_range"] == {"min": 12.0, "max": 200.0}
 
 
-def test_create_then_read_back(client):
+def test_create_then_read_back(client, auth):
     payload = dict(model="CM-FC500", manufacturer="Cryomar", category="fan_coil",
                    refrigerant="R32", capacity_kw=6.0, power_input_kw=1.5,
                    voltage="230V/1ph/50Hz", sound_pressure_db=34.0,
                    weight_kg=29.0, price_eur=1250.0)
-    assert client.post("/equipment", json=payload).status_code == 201
+    assert client.post("/equipment", json=payload, headers=auth).status_code == 201
     assert client.get("/equipment/CM-FC500").json()["cop"] == 4.0
 
 
-def test_duplicate_model_is_rejected(client):
+def test_duplicate_model_is_rejected(client, auth):
     payload = dict(model="TX-CH900", manufacturer="Thermexa", category="chiller",
                    refrigerant="R32", capacity_kw=1.0, power_input_kw=1.0,
                    voltage="400V/3ph/50Hz", sound_pressure_db=1.0,
                    weight_kg=1.0, price_eur=1.0)
-    assert client.post("/equipment", json=payload).status_code == 409
+    assert client.post("/equipment", json=payload, headers=auth).status_code == 409
 
 
-def test_negative_capacity_is_rejected(client):
+def test_negative_capacity_is_rejected(client, auth):
     payload = dict(model="XX-1", manufacturer="Norvent", category="chiller",
                    refrigerant="R32", capacity_kw=-5.0, power_input_kw=1.0,
                    voltage="400V/3ph/50Hz", sound_pressure_db=1.0,
                    weight_kg=1.0, price_eur=1.0)
-    assert client.post("/equipment", json=payload).status_code == 422
+    assert client.post("/equipment", json=payload, headers=auth).status_code == 422

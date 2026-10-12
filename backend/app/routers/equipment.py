@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from app import crud
 from app.database import get_db
 from app.schemas import Category, Comparison, EquipmentCreate, EquipmentPage, EquipmentRead
+from app.security import require_api_key
 
 router = APIRouter(prefix="/equipment", tags=["equipment"])
 
@@ -60,7 +61,12 @@ def detail(model: str, db: Session = Depends(get_db)):
     return unit
 
 
-@router.post("", response_model=EquipmentRead, status_code=201)
+@router.post(
+    "",
+    response_model=EquipmentRead,
+    status_code=201,
+    dependencies=[Depends(require_api_key)],
+)
 def add(payload: EquipmentCreate, db: Session = Depends(get_db)):
     if crud.get_by_model(db, payload.model):
         raise HTTPException(409, f"model {payload.model} already exists")

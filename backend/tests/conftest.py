@@ -7,6 +7,7 @@ os.environ["SEED_ON_STARTUP"] = "false"
 _db_fd, _db_path = tempfile.mkstemp(suffix=".db")
 os.close(_db_fd)
 os.environ["DATABASE_URL"] = f"sqlite:///{_db_path}"
+os.environ["API_KEY"] = "test-key"
 
 from fastapi.testclient import TestClient  # noqa: E402
 
@@ -50,3 +51,9 @@ def client():
 def db():
     with SessionLocal() as session:
         yield session
+
+
+@pytest.fixture
+def auth():
+    """Header every write route needs. Matches API_KEY set at the top of this file."""
+    return {"X-API-Key": "test-key"}

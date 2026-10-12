@@ -40,12 +40,18 @@ of two identical figures the winner would be a lie.
 - Page through results, sorted by capacity
 - Open one unit and see its full specification, including the COP the API computes
 - Compare 2 to 4 units on capacity, power input, COP, noise, weight and price
-- Add a new unit through the API
+- Add a new unit through the API, with an `X-API-Key` header
 
 ### What it does not do
 
-No authentication, no quoting, no price history. The catalogue is read-mostly: adding
+No user accounts, no quoting, no price history. The catalogue is read-mostly: adding
 a unit is a single POST and there is no edit or delete yet.
+
+Reads are open to anyone. The one write route is behind a shared key sent as
+`X-API-Key`; set `API_KEY` in the environment to use it. Without that variable the route
+answers 503 instead of accepting the write, so a deployment that forgets the key is
+closed rather than open. There is no per-user identity and no rate limit, which is fine
+for a catalogue one maintainer writes to and would not be fine for anything else.
 
 > The catalogue data is invented. Norvent, Thermexa, Frigora, Valbrand and Cryomar are
 > not real companies and the figures are generated placeholders, not datasheets. Do not

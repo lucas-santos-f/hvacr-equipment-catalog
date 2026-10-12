@@ -105,3 +105,20 @@ region is not "the same as the others", it is "whatever the provider picks today
 `try`. The container refused to start instead of serving an empty catalogue, which is
 exactly the behaviour the earlier empty-catalogue incident was fixed to produce. Good
 failure, found in one log read.
+
+### POST /equipment answers 401 or 503
+
+Both are the write gate in `app/security.py` doing its job, not a fault.
+
+- **401** - the `X-API-Key` header is missing or does not match. Read the live value from
+  the Render dashboard: service `hvacr-catalog-api` > Environment > `API_KEY`. It is
+  minted by `generateValue` in `render.yaml` and is deliberately not in the repository.
+- **503** - `API_KEY` is empty in the environment, so writes are refused outright. Check
+  `printenv API_KEY` in the container. The gate fails closed on purpose: an unconfigured
+  deploy must not become a world-writable endpoint.
+
+```bash
+curl -fsS -X POST "$API/equipment" \
+  -H "X-API-Key: $API_KEY" -H 'Content-Type: application/json' \
+  -d '{"model":"XX-1","manufacturer":"Norvent","category":"chiller","refrigerant":"R32","capacity_kw":10,"power_input_kw":2.5,"voltage":"400V/3ph/50Hz","sound_pressure_db":50,"weight_kg":100,"price_eur":9000}'
+```

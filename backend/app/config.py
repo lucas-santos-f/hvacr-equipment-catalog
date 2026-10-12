@@ -32,6 +32,8 @@ class Settings:
         raw_origins = os.getenv("CORS_ORIGINS", "http://localhost:5173")
         self.cors_origins = [o for o in (normalise_origin(p) for p in raw_origins.split(",")) if o]
         self.seed_on_startup = os.getenv("SEED_ON_STARTUP", "true").lower() == "true"
+        # Empty means writes are refused outright. See app/security.py.
+        self.api_key = os.getenv("API_KEY", "").strip()
 
 
 settings = Settings()

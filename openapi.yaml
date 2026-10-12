@@ -114,6 +114,8 @@ paths:
       - equipment
       summary: Add
       operationId: add_equipment_post
+      security:
+      - APIKeyHeader: []
       requestBody:
         required: true
         content:
@@ -411,3 +413,8 @@ components:
       - msg
       - type
       title: ValidationError
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key

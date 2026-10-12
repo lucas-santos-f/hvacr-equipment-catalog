@@ -37,6 +37,11 @@ services:
           property: connectionString
       - key: SEED_ON_STARTUP
         value: "true"
+      # Render mints this on first sync and it is never printed in the repo. Read it
+      # from the dashboard when you need to POST a unit. With no value set the write
+      # route answers 503 rather than accepting anonymous writes.
+      - key: API_KEY
+        generateValue: true
       - key: CORS_ORIGINS
         value: https://hvacr-catalog-web.onrender.com
 

@@ -19,6 +19,7 @@ services:
       DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-catalog}:${POSTGRES_PASSWORD:-catalog}@db:5432/${POSTGRES_DB:-catalog}
       CORS_ORIGINS: http://localhost:5173,http://localhost:8080
       SEED_ON_STARTUP: "true"
+      API_KEY: ${API_KEY:-local-dev-key-change-me}
     depends_on:
       db:
         condition: service_healthy
