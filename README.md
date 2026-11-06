@@ -3,17 +3,14 @@
 Pick a chiller, a compressor or a pump by duty and refrigerant, then put up to four
 units side by side and see which one actually wins on each figure.
 
-## Live
+## Demo
 
-- App: https://hvacr-catalog-web.onrender.com
-- API: https://hvacr-catalog-api.onrender.com
-- API docs: https://hvacr-catalog-api.onrender.com/docs
+The app ran on Render's free tier from October to November 2026 and has since been
+taken down. It runs locally with a single `docker compose up --build`; see
+[Running it](#running-it).
 
-Both run on Render's free tier, which spins a service down after about 15 minutes idle.
-The first request after that takes up to a minute while the container wakes.
-
-Infrastructure is declared in [render.yaml](render.yaml) and deployed as a Render
-blueprint, so the database, API and static site come up together with their URLs
+Infrastructure is still declared in [render.yaml](render.yaml) as a Render blueprint,
+so the database, API and static site can be brought back up together with their URLs
 already wired. [docs/deployment.md](docs/deployment.md) walks through it.
 
 ## Built with AI assistance
