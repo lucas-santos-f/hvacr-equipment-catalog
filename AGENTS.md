@@ -16,7 +16,12 @@ you regenerate `openapi.yaml` with `make spec` in the same commit.
 by hand; it is generated.
 
 **Comparison logic stays on the server.** `backend/app/crud.py::COMPARISON_FIELDS` owns
-the direction of "better" for every field. Do not reimplement it in the frontend.
+the direction of "better" for every field. Do not reimplement it in the frontend. The one
+exception is `frontend/src/api/snapshot.js`, which answers for the static demo build: it
+reads the directions from the exported snapshot, and the comparison cases exported next
+to it keep it identical to `build_comparison`. Change the seed, a response schema or
+`COMPARISON_FIELDS` and you run `make snapshot` in the same commit;
+`backend/tests/test_static_snapshot.py` fails the build otherwise.
 
 **The frontend talks to the backend only through `frontend/src/api/client.js`.** No
 `fetch` in a component, no URL built outside that file. If you need a new endpoint, add

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { api } from './api/client.js'
+import { STATIC_DEMO, api } from './api/client.js'
 import Filters from './components/Filters.jsx'
 import ResultsTable from './components/ResultsTable.jsx'
 import CompareTray from './components/CompareTray.jsx'
@@ -54,6 +54,12 @@ export default function App() {
       <header>
         <h1>HVAC-R equipment catalogue</h1>
         <p>Filter by duty and refrigerant, then put up to four units side by side.</p>
+        {STATIC_DEMO && (
+          <p className="hint">
+            Static demo: the catalogue ships with this page and filtering and comparing run in
+            your browser. The API is not deployed here. All units and figures are invented.
+          </p>
+        )}
       </header>
 
       {error && <p role="alert" className="error">{error}</p>}

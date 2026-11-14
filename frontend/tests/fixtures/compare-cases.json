@@ -1,0 +1,1114 @@
+[
+  {
+    "models": [
+      "CM-CI131",
+      "FG-CI178"
+    ],
+    "expected": {
+      "models": [
+        "CM-CI131",
+        "FG-CI178"
+      ],
+      "rows": [
+        {
+          "field": "capacity_kw",
+          "values": {
+            "CM-CI131": 1.7,
+            "FG-CI178": 4.8
+          },
+          "best": "FG-CI178"
+        },
+        {
+          "field": "power_input_kw",
+          "values": {
+            "CM-CI131": 0.06,
+            "FG-CI178": 0.12
+          },
+          "best": "CM-CI131"
+        },
+        {
+          "field": "cop",
+          "values": {
+            "CM-CI131": 28.33,
+            "FG-CI178": 40.0
+          },
+          "best": "FG-CI178"
+        },
+        {
+          "field": "sound_pressure_db",
+          "values": {
+            "CM-CI131": 38.0,
+            "FG-CI178": 57.9
+          },
+          "best": "CM-CI131"
+        },
+        {
+          "field": "weight_kg",
+          "values": {
+            "CM-CI131": 5.7,
+            "FG-CI178": 20.4
+          },
+          "best": "CM-CI131"
+        },
+        {
+          "field": "price_eur",
+          "values": {
+            "CM-CI131": 240.0,
+            "FG-CI178": 850.0
+          },
+          "best": "CM-CI131"
+        }
+      ]
+    }
+  },
+  {
+    "models": [
+      "CM-CI131",
+      "FG-CI178",
+      "NV-CI143"
+    ],
+    "expected": {
+      "models": [
+        "CM-CI131",
+        "FG-CI178",
+        "NV-CI143"
+      ],
+      "rows": [
+        {
+          "field": "capacity_kw",
+          "values": {
+            "CM-CI131": 1.7,
+            "FG-CI178": 4.8,
+            "NV-CI143": 7.3
+          },
+          "best": "NV-CI143"
+        },
+        {
+          "field": "power_input_kw",
+          "values": {
+            "CM-CI131": 0.06,
+            "FG-CI178": 0.12,
+            "NV-CI143": 0.22
+          },
+          "best": "CM-CI131"
+        },
+        {
+          "field": "cop",
+          "values": {
+            "CM-CI131": 28.33,
+            "FG-CI178": 40.0,
+            "NV-CI143": 33.18
+          },
+          "best": "FG-CI178"
+        },
+        {
+          "field": "sound_pressure_db",
+          "values": {
+            "CM-CI131": 38.0,
+            "FG-CI178": 57.9,
+            "NV-CI143": 38.3
+          },
+          "best": "CM-CI131"
+        },
+        {
+          "field": "weight_kg",
+          "values": {
+            "CM-CI131": 5.7,
+            "FG-CI178": 20.4,
+            "NV-CI143": 29.2
+          },
+          "best": "CM-CI131"
+        },
+        {
+          "field": "price_eur",
+          "values": {
+            "CM-CI131": 240.0,
+            "FG-CI178": 850.0,
+            "NV-CI143": 1430.0
+          },
+          "best": "CM-CI131"
+        }
+      ]
+    }
+  },
+  {
+    "models": [
+      "CM-CI131",
+      "FG-CI178",
+      "NV-CI143",
+      "FG-CI186"
+    ],
+    "expected": {
+      "models": [
+        "CM-CI131",
+        "FG-CI178",
+        "NV-CI143",
+        "FG-CI186"
+      ],
+      "rows": [
+        {
+          "field": "capacity_kw",
+          "values": {
+            "CM-CI131": 1.7,
+            "FG-CI178": 4.8,
+            "NV-CI143": 7.3,
+            "FG-CI186": 7.6
+          },
+          "best": "FG-CI186"
+        },
+        {
+          "field": "power_input_kw",
+          "values": {
+            "CM-CI131": 0.06,
+            "FG-CI178": 0.12,
+            "NV-CI143": 0.22,
+            "FG-CI186": 0.23
+          },
+          "best": "CM-CI131"
+        },
+        {
+          "field": "cop",
+          "values": {
+            "CM-CI131": 28.33,
+            "FG-CI178": 40.0,
+            "NV-CI143": 33.18,
+            "FG-CI186": 33.04
+          },
+          "best": "FG-CI178"
+        },
+        {
+          "field": "sound_pressure_db",
+          "values": {
+            "CM-CI131": 38.0,
+            "FG-CI178": 57.9,
+            "NV-CI143": 38.3,
+            "FG-CI186": 43.0
+          },
+          "best": "CM-CI131"
+        },
+        {
+          "field": "weight_kg",
+          "values": {
+            "CM-CI131": 5.7,
+            "FG-CI178": 20.4,
+            "NV-CI143": 29.2,
+            "FG-CI186": 30.4
+          },
+          "best": "CM-CI131"
+        },
+        {
+          "field": "price_eur",
+          "values": {
+            "CM-CI131": 240.0,
+            "FG-CI178": 850.0,
+            "NV-CI143": 1430.0,
+            "FG-CI186": 1030.0
+          },
+          "best": "CM-CI131"
+        }
+      ]
+    }
+  },
+  {
+    "models": [
+      "FG-FA209",
+      "FG-FA194"
+    ],
+    "expected": {
+      "models": [
+        "FG-FA209",
+        "FG-FA194"
+      ],
+      "rows": [
+        {
+          "field": "capacity_kw",
+          "values": {
+            "FG-FA209": 2.6,
+            "FG-FA194": 3.3
+          },
+          "best": "FG-FA194"
+        },
+        {
+          "field": "power_input_kw",
+          "values": {
+            "FG-FA209": 0.74,
+            "FG-FA194": 0.81
+          },
+          "best": "FG-FA209"
+        },
+        {
+          "field": "cop",
+          "values": {
+            "FG-FA209": 3.51,
+            "FG-FA194": 4.07
+          },
+          "best": "FG-FA194"
+        },
+        {
+          "field": "sound_pressure_db",
+          "values": {
+            "FG-FA209": 44.2,
+            "FG-FA194": 31.1
+          },
+          "best": "FG-FA194"
+        },
+        {
+          "field": "weight_kg",
+          "values": {
+            "FG-FA209": 12.9,
+            "FG-FA194": 16.7
+          },
+          "best": "FG-FA209"
+        },
+        {
+          "field": "price_eur",
+          "values": {
+            "FG-FA209": 480.0,
+            "FG-FA194": 650.0
+          },
+          "best": "FG-FA209"
+        }
+      ]
+    }
+  },
+  {
+    "models": [
+      "FG-FA209",
+      "FG-FA194",
+      "TX-FA161"
+    ],
+    "expected": {
+      "models": [
+        "FG-FA209",
+        "FG-FA194",
+        "TX-FA161"
+      ],
+      "rows": [
+        {
+          "field": "capacity_kw",
+          "values": {
+            "FG-FA209": 2.6,
+            "FG-FA194": 3.3,
+            "TX-FA161": 7.0
+          },
+          "best": "TX-FA161"
+        },
+        {
+          "field": "power_input_kw",
+          "values": {
+            "FG-FA209": 0.74,
+            "FG-FA194": 0.81,
+            "TX-FA161": 2.39
+          },
+          "best": "FG-FA209"
+        },
+        {
+          "field": "cop",
+          "values": {
+            "FG-FA209": 3.51,
+            "FG-FA194": 4.07,
+            "TX-FA161": 2.93
+          },
+          "best": "FG-FA194"
+        },
+        {
+          "field": "sound_pressure_db",
+          "values": {
+            "FG-FA209": 44.2,
+            "FG-FA194": 31.1,
+            "TX-FA161": 36.2
+          },
+          "best": "FG-FA194"
+        },
+        {
+          "field": "weight_kg",
+          "values": {
+            "FG-FA209": 12.9,
+            "FG-FA194": 16.7,
+            "TX-FA161": 29.4
+          },
+          "best": "FG-FA209"
+        },
+        {
+          "field": "price_eur",
+          "values": {
+            "FG-FA209": 480.0,
+            "FG-FA194": 650.0,
+            "TX-FA161": 1280.0
+          },
+          "best": "FG-FA209"
+        }
+      ]
+    }
+  },
+  {
+    "models": [
+      "FG-FA209",
+      "FG-FA194",
+      "TX-FA161",
+      "CM-FA148"
+    ],
+    "expected": {
+      "models": [
+        "FG-FA209",
+        "FG-FA194",
+        "TX-FA161",
+        "CM-FA148"
+      ],
+      "rows": [
+        {
+          "field": "capacity_kw",
+          "values": {
+            "FG-FA209": 2.6,
+            "FG-FA194": 3.3,
+            "TX-FA161": 7.0,
+            "CM-FA148": 7.3
+          },
+          "best": "CM-FA148"
+        },
+        {
+          "field": "power_input_kw",
+          "values": {
+            "FG-FA209": 0.74,
+            "FG-FA194": 0.81,
+            "TX-FA161": 2.39,
+            "CM-FA148": 2.51
+          },
+          "best": "FG-FA209"
+        },
+        {
+          "field": "cop",
+          "values": {
+            "FG-FA209": 3.51,
+            "FG-FA194": 4.07,
+            "TX-FA161": 2.93,
+            "CM-FA148": 2.91
+          },
+          "best": "FG-FA194"
+        },
+        {
+          "field": "sound_pressure_db",
+          "values": {
+            "FG-FA209": 44.2,
+            "FG-FA194": 31.1,
+            "TX-FA161": 36.2,
+            "CM-FA148": 50.4
+          },
+          "best": "FG-FA194"
+        },
+        {
+          "field": "weight_kg",
+          "values": {
+            "FG-FA209": 12.9,
+            "FG-FA194": 16.7,
+            "TX-FA161": 29.4,
+            "CM-FA148": 35.9
+          },
+          "best": "FG-FA209"
+        },
+        {
+          "field": "price_eur",
+          "values": {
+            "FG-FA209": 480.0,
+            "FG-FA194": 650.0,
+            "TX-FA161": 1280.0,
+            "CM-FA148": 1670.0
+          },
+          "best": "FG-FA209"
+        }
+      ]
+    }
+  },
+  {
+    "models": [
+      "TX-HE145",
+      "TX-HE149"
+    ],
+    "expected": {
+      "models": [
+        "TX-HE145",
+        "TX-HE149"
+      ],
+      "rows": [
+        {
+          "field": "capacity_kw",
+          "values": {
+            "TX-HE145": 47.0,
+            "TX-HE149": 59.9
+          },
+          "best": "TX-HE149"
+        },
+        {
+          "field": "power_input_kw",
+          "values": {
+            "TX-HE145": 1.78,
+            "TX-HE149": 1.22
+          },
+          "best": "TX-HE149"
+        },
+        {
+          "field": "cop",
+          "values": {
+            "TX-HE145": 26.4,
+            "TX-HE149": 49.1
+          },
+          "best": "TX-HE149"
+        },
+        {
+          "field": "sound_pressure_db",
+          "values": {
+            "TX-HE145": 0.0,
+            "TX-HE149": 0.0
+          },
+          "best": null
+        },
+        {
+          "field": "weight_kg",
+          "values": {
+            "TX-HE145": 92.8,
+            "TX-HE149": 115.1
+          },
+          "best": "TX-HE145"
+        },
+        {
+          "field": "price_eur",
+          "values": {
+            "TX-HE145": 4170.0,
+            "TX-HE149": 4830.0
+          },
+          "best": "TX-HE145"
+        }
+      ]
+    }
+  },
+  {
+    "models": [
+      "TX-HE145",
+      "TX-HE149",
+      "TX-HE140"
+    ],
+    "expected": {
+      "models": [
+        "TX-HE145",
+        "TX-HE149",
+        "TX-HE140"
+      ],
+      "rows": [
+        {
+          "field": "capacity_kw",
+          "values": {
+            "TX-HE145": 47.0,
+            "TX-HE149": 59.9,
+            "TX-HE140": 92.2
+          },
+          "best": "TX-HE140"
+        },
+        {
+          "field": "power_input_kw",
+          "values": {
+            "TX-HE145": 1.78,
+            "TX-HE149": 1.22,
+            "TX-HE140": 2.52
+          },
+          "best": "TX-HE149"
+        },
+        {
+          "field": "cop",
+          "values": {
+            "TX-HE145": 26.4,
+            "TX-HE149": 49.1,
+            "TX-HE140": 36.59
+          },
+          "best": "TX-HE149"
+        },
+        {
+          "field": "sound_pressure_db",
+          "values": {
+            "TX-HE145": 0.0,
+            "TX-HE149": 0.0,
+            "TX-HE140": 0.0
+          },
+          "best": null
+        },
+        {
+          "field": "weight_kg",
+          "values": {
+            "TX-HE145": 92.8,
+            "TX-HE149": 115.1,
+            "TX-HE140": 161.2
+          },
+          "best": "TX-HE145"
+        },
+        {
+          "field": "price_eur",
+          "values": {
+            "TX-HE145": 4170.0,
+            "TX-HE149": 4830.0,
+            "TX-HE140": 7830.0
+          },
+          "best": "TX-HE145"
+        }
+      ]
+    }
+  },
+  {
+    "models": [
+      "TX-HE145",
+      "TX-HE149",
+      "TX-HE140",
+      "FG-HE161"
+    ],
+    "expected": {
+      "models": [
+        "TX-HE145",
+        "TX-HE149",
+        "TX-HE140",
+        "FG-HE161"
+      ],
+      "rows": [
+        {
+          "field": "capacity_kw",
+          "values": {
+            "TX-HE145": 47.0,
+            "TX-HE149": 59.9,
+            "TX-HE140": 92.2,
+            "FG-HE161": 92.7
+          },
+          "best": "FG-HE161"
+        },
+        {
+          "field": "power_input_kw",
+          "values": {
+            "TX-HE145": 1.78,
+            "TX-HE149": 1.22,
+            "TX-HE140": 2.52,
+            "FG-HE161": 1.83
+          },
+          "best": "TX-HE149"
+        },
+        {
+          "field": "cop",
+          "values": {
+            "TX-HE145": 26.4,
+            "TX-HE149": 49.1,
+            "TX-HE140": 36.59,
+            "FG-HE161": 50.66
+          },
+          "best": "FG-HE161"
+        },
+        {
+          "field": "sound_pressure_db",
+          "values": {
+            "TX-HE145": 0.0,
+            "TX-HE149": 0.0,
+            "TX-HE140": 0.0,
+            "FG-HE161": 0.0
+          },
+          "best": null
+        },
+        {
+          "field": "weight_kg",
+          "values": {
+            "TX-HE145": 92.8,
+            "TX-HE149": 115.1,
+            "TX-HE140": 161.2,
+            "FG-HE161": 238.0
+          },
+          "best": "TX-HE145"
+        },
+        {
+          "field": "price_eur",
+          "values": {
+            "TX-HE145": 4170.0,
+            "TX-HE149": 4830.0,
+            "TX-HE140": 7830.0,
+            "FG-HE161": 10000.0
+          },
+          "best": "TX-HE145"
+        }
+      ]
+    }
+  },
+  {
+    "models": [
+      "TX-CO126",
+      "NV-CO117"
+    ],
+    "expected": {
+      "models": [
+        "TX-CO126",
+        "NV-CO117"
+      ],
+      "rows": [
+        {
+          "field": "capacity_kw",
+          "values": {
+            "TX-CO126": 55.4,
+            "NV-CO117": 57.6
+          },
+          "best": "NV-CO117"
+        },
+        {
+          "field": "power_input_kw",
+          "values": {
+            "TX-CO126": 17.76,
+            "NV-CO117": 14.44
+          },
+          "best": "NV-CO117"
+        },
+        {
+          "field": "cop",
+          "values": {
+            "TX-CO126": 3.12,
+            "NV-CO117": 3.99
+          },
+          "best": "NV-CO117"
+        },
+        {
+          "field": "sound_pressure_db",
+          "values": {
+            "TX-CO126": 84.7,
+            "NV-CO117": 62.7
+          },
+          "best": "NV-CO117"
+        },
+        {
+          "field": "weight_kg",
+          "values": {
+            "TX-CO126": 267.4,
+            "NV-CO117": 257.9
+          },
+          "best": "NV-CO117"
+        },
+        {
+          "field": "price_eur",
+          "values": {
+            "TX-CO126": 14830.0,
+            "NV-CO117": 14230.0
+          },
+          "best": "NV-CO117"
+        }
+      ]
+    }
+  },
+  {
+    "models": [
+      "TX-CO126",
+      "NV-CO117",
+      "FG-CO137"
+    ],
+    "expected": {
+      "models": [
+        "TX-CO126",
+        "NV-CO117",
+        "FG-CO137"
+      ],
+      "rows": [
+        {
+          "field": "capacity_kw",
+          "values": {
+            "TX-CO126": 55.4,
+            "NV-CO117": 57.6,
+            "FG-CO137": 77.5
+          },
+          "best": "FG-CO137"
+        },
+        {
+          "field": "power_input_kw",
+          "values": {
+            "TX-CO126": 17.76,
+            "NV-CO117": 14.44,
+            "FG-CO137": 24.41
+          },
+          "best": "NV-CO117"
+        },
+        {
+          "field": "cop",
+          "values": {
+            "TX-CO126": 3.12,
+            "NV-CO117": 3.99,
+            "FG-CO137": 3.17
+          },
+          "best": "NV-CO117"
+        },
+        {
+          "field": "sound_pressure_db",
+          "values": {
+            "TX-CO126": 84.7,
+            "NV-CO117": 62.7,
+            "FG-CO137": 75.1
+          },
+          "best": "NV-CO117"
+        },
+        {
+          "field": "weight_kg",
+          "values": {
+            "TX-CO126": 267.4,
+            "NV-CO117": 257.9,
+            "FG-CO137": 353.6
+          },
+          "best": "NV-CO117"
+        },
+        {
+          "field": "price_eur",
+          "values": {
+            "TX-CO126": 14830.0,
+            "NV-CO117": 14230.0,
+            "FG-CO137": 20790.0
+          },
+          "best": "NV-CO117"
+        }
+      ]
+    }
+  },
+  {
+    "models": [
+      "TX-CO126",
+      "NV-CO117",
+      "FG-CO137",
+      "TX-CO113"
+    ],
+    "expected": {
+      "models": [
+        "TX-CO126",
+        "NV-CO117",
+        "FG-CO137",
+        "TX-CO113"
+      ],
+      "rows": [
+        {
+          "field": "capacity_kw",
+          "values": {
+            "TX-CO126": 55.4,
+            "NV-CO117": 57.6,
+            "FG-CO137": 77.5,
+            "TX-CO113": 78.8
+          },
+          "best": "TX-CO113"
+        },
+        {
+          "field": "power_input_kw",
+          "values": {
+            "TX-CO126": 17.76,
+            "NV-CO117": 14.44,
+            "FG-CO137": 24.41,
+            "TX-CO113": 30.85
+          },
+          "best": "NV-CO117"
+        },
+        {
+          "field": "cop",
+          "values": {
+            "TX-CO126": 3.12,
+            "NV-CO117": 3.99,
+            "FG-CO137": 3.17,
+            "TX-CO113": 2.55
+          },
+          "best": "NV-CO117"
+        },
+        {
+          "field": "sound_pressure_db",
+          "values": {
+            "TX-CO126": 84.7,
+            "NV-CO117": 62.7,
+            "FG-CO137": 75.1,
+            "TX-CO113": 67.3
+          },
+          "best": "NV-CO117"
+        },
+        {
+          "field": "weight_kg",
+          "values": {
+            "TX-CO126": 267.4,
+            "NV-CO117": 257.9,
+            "FG-CO137": 353.6,
+            "TX-CO113": 357.7
+          },
+          "best": "NV-CO117"
+        },
+        {
+          "field": "price_eur",
+          "values": {
+            "TX-CO126": 14830.0,
+            "NV-CO117": 14230.0,
+            "FG-CO137": 20790.0,
+            "TX-CO113": 24400.0
+          },
+          "best": "NV-CO117"
+        }
+      ]
+    }
+  },
+  {
+    "models": [
+      "VB-CH107",
+      "TX-CH105"
+    ],
+    "expected": {
+      "models": [
+        "VB-CH107",
+        "TX-CH105"
+      ],
+      "rows": [
+        {
+          "field": "capacity_kw",
+          "values": {
+            "VB-CH107": 73.7,
+            "TX-CH105": 141.3
+          },
+          "best": "TX-CH105"
+        },
+        {
+          "field": "power_input_kw",
+          "values": {
+            "VB-CH107": 18.72,
+            "TX-CH105": 43.92
+          },
+          "best": "VB-CH107"
+        },
+        {
+          "field": "cop",
+          "values": {
+            "VB-CH107": 3.94,
+            "TX-CH105": 3.22
+          },
+          "best": "VB-CH107"
+        },
+        {
+          "field": "sound_pressure_db",
+          "values": {
+            "VB-CH107": 76.3,
+            "TX-CH105": 77.6
+          },
+          "best": "VB-CH107"
+        },
+        {
+          "field": "weight_kg",
+          "values": {
+            "VB-CH107": 584.7,
+            "TX-CH105": 934.0
+          },
+          "best": "VB-CH107"
+        },
+        {
+          "field": "price_eur",
+          "values": {
+            "VB-CH107": 29140.0,
+            "TX-CH105": 48140.0
+          },
+          "best": "VB-CH107"
+        }
+      ]
+    }
+  },
+  {
+    "models": [
+      "VB-CH107",
+      "TX-CH105",
+      "VB-CH110"
+    ],
+    "expected": {
+      "models": [
+        "VB-CH107",
+        "TX-CH105",
+        "VB-CH110"
+      ],
+      "rows": [
+        {
+          "field": "capacity_kw",
+          "values": {
+            "VB-CH107": 73.7,
+            "TX-CH105": 141.3,
+            "VB-CH110": 184.5
+          },
+          "best": "VB-CH110"
+        },
+        {
+          "field": "power_input_kw",
+          "values": {
+            "VB-CH107": 18.72,
+            "TX-CH105": 43.92,
+            "VB-CH110": 65.1
+          },
+          "best": "VB-CH107"
+        },
+        {
+          "field": "cop",
+          "values": {
+            "VB-CH107": 3.94,
+            "TX-CH105": 3.22,
+            "VB-CH110": 2.83
+          },
+          "best": "VB-CH107"
+        },
+        {
+          "field": "sound_pressure_db",
+          "values": {
+            "VB-CH107": 76.3,
+            "TX-CH105": 77.6,
+            "VB-CH110": 59.4
+          },
+          "best": "VB-CH110"
+        },
+        {
+          "field": "weight_kg",
+          "values": {
+            "VB-CH107": 584.7,
+            "TX-CH105": 934.0,
+            "VB-CH110": 1585.4
+          },
+          "best": "VB-CH107"
+        },
+        {
+          "field": "price_eur",
+          "values": {
+            "VB-CH107": 29140.0,
+            "TX-CH105": 48140.0,
+            "VB-CH110": 47330.0
+          },
+          "best": "VB-CH107"
+        }
+      ]
+    }
+  },
+  {
+    "models": [
+      "VB-CH107",
+      "TX-CH105",
+      "VB-CH110",
+      "TX-CH111"
+    ],
+    "expected": {
+      "models": [
+        "VB-CH107",
+        "TX-CH105",
+        "VB-CH110",
+        "TX-CH111"
+      ],
+      "rows": [
+        {
+          "field": "capacity_kw",
+          "values": {
+            "VB-CH107": 73.7,
+            "TX-CH105": 141.3,
+            "VB-CH110": 184.5,
+            "TX-CH111": 240.7
+          },
+          "best": "TX-CH111"
+        },
+        {
+          "field": "power_input_kw",
+          "values": {
+            "VB-CH107": 18.72,
+            "TX-CH105": 43.92,
+            "VB-CH110": 65.1,
+            "TX-CH111": 67.42
+          },
+          "best": "VB-CH107"
+        },
+        {
+          "field": "cop",
+          "values": {
+            "VB-CH107": 3.94,
+            "TX-CH105": 3.22,
+            "VB-CH110": 2.83,
+            "TX-CH111": 3.57
+          },
+          "best": "VB-CH107"
+        },
+        {
+          "field": "sound_pressure_db",
+          "values": {
+            "VB-CH107": 76.3,
+            "TX-CH105": 77.6,
+            "VB-CH110": 59.4,
+            "TX-CH111": 72.1
+          },
+          "best": "VB-CH110"
+        },
+        {
+          "field": "weight_kg",
+          "values": {
+            "VB-CH107": 584.7,
+            "TX-CH105": 934.0,
+            "VB-CH110": 1585.4,
+            "TX-CH111": 1657.6
+          },
+          "best": "VB-CH107"
+        },
+        {
+          "field": "price_eur",
+          "values": {
+            "VB-CH107": 29140.0,
+            "TX-CH105": 48140.0,
+            "VB-CH110": 47330.0,
+            "TX-CH111": 56150.0
+          },
+          "best": "VB-CH107"
+        }
+      ]
+    }
+  },
+  {
+    "models": [
+      "CM-CI131",
+      "NV-CH110"
+    ],
+    "expected": {
+      "models": [
+        "CM-CI131",
+        "NV-CH110"
+      ],
+      "rows": [
+        {
+          "field": "capacity_kw",
+          "values": {
+            "CM-CI131": 1.7,
+            "NV-CH110": 791.9
+          },
+          "best": "NV-CH110"
+        },
+        {
+          "field": "power_input_kw",
+          "values": {
+            "CM-CI131": 0.06,
+            "NV-CH110": 206.86
+          },
+          "best": "CM-CI131"
+        },
+        {
+          "field": "cop",
+          "values": {
+            "CM-CI131": 28.33,
+            "NV-CH110": 3.83
+          },
+          "best": "CM-CI131"
+        },
+        {
+          "field": "sound_pressure_db",
+          "values": {
+            "CM-CI131": 38.0,
+            "NV-CH110": 61.6
+          },
+          "best": "CM-CI131"
+        },
+        {
+          "field": "weight_kg",
+          "values": {
+            "CM-CI131": 5.7,
+            "NV-CH110": 5425.6
+          },
+          "best": "CM-CI131"
+        },
+        {
+          "field": "price_eur",
+          "values": {
+            "CM-CI131": 240.0,
+            "NV-CH110": 235280.0
+          },
+          "best": "CM-CI131"
+        }
+      ]
+    }
+  }
+]

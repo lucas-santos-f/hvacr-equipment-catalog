@@ -41,11 +41,28 @@ async function request(path) {
   return response.json()
 }
 
-export const api = {
+const http = {
   searchEquipment: (filters = {}) => request(`/equipment${query(filters)}`),
   getEquipment: (model) => request(`/equipment/${encodeURIComponent(model)}`),
   compare: (models) => request(`/equipment/compare${query({ models: models.join(',') })}`),
   getFacets: () => request('/facets'),
 }
+
+// `vite build --mode demo` is the public static demo: no API runs behind it, so the
+// same calls are answered from a snapshot of the catalogue. See ./snapshot.js.
+export const STATIC_DEMO = import.meta.env.MODE === 'demo'
+
+let snapshotApi
+function fromSnapshot(method) {
+  return async (...args) => {
+    snapshotApi ??= Promise.all([import('./snapshot.js'), import('./catalog-snapshot.json')])
+      .then(([{ createSnapshotApi }, data]) => createSnapshotApi(data.default))
+    return (await snapshotApi)[method](...args)
+  }
+}
+
+export const api = STATIC_DEMO
+  ? Object.fromEntries(Object.keys(http).map((method) => [method, fromSnapshot(method)]))
+  : http
 
 export { query, BASE, normaliseBase }
