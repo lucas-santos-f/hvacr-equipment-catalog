@@ -1,6 +1,6 @@
 # Testing
 
-52 tests: 28 backend, 24 frontend. Both suites run in under three seconds.
+88 tests: 50 backend, 38 frontend. Both suites run in under three seconds.
 
 ## Layers
 
@@ -11,6 +11,8 @@
 | Integration | `backend/tests/integration/test_api.py` | Real HTTP against a real database | TestClient + SQLite file |
 | Unit, frontend | `frontend/tests/selection.test.js` | Tray rules, formatting | Pure functions |
 | Unit, frontend | `frontend/tests/client.test.js` | URL building, error mapping | `fetch` stubbed |
+| Snapshot | `backend/tests/test_static_snapshot.py` | The demo snapshot matches the seed and the comparison rules | In-memory SQLite |
+| Unit, frontend | `frontend/tests/snapshot.test.js` | The demo adapter filters, pages and compares like the API | Cases exported by the backend |
 
 CI runs unit and integration as separate steps on purpose. A red integration step with a
 green unit step points at wiring; the reverse points at logic.

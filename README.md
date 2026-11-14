@@ -3,10 +3,19 @@
 Pick a chiller, a compressor or a pump by duty and refrigerant, then put up to four
 units side by side and see which one actually wins on each figure.
 
+Started as Project 1 of the [AI Dev Tools Zoomcamp 2026](https://github.com/DataTalksClub/ai-dev-tools-zoomcamp)
+by DataTalks.Club. The static demo below was added after the course.
+
 ## Demo
 
-The app ran on Render's free tier from October to November 2026 and has since been
-taken down. It runs locally with a single `docker compose up --build`; see
+https://hvacr-catalog.frioeclima.workers.dev
+
+A static build of the frontend (`npm run build:demo`). The catalogue ships with the
+page as a snapshot exported from the backend, and filtering and comparing run in the
+browser. There is no API or database behind it, so the write route does not exist there.
+
+The full stack ran on Render's free tier from October to November 2026 and has since
+been taken down. It runs locally with a single `docker compose up --build`; see
 [Running it](#running-it).
 
 Infrastructure is still declared in [render.yaml](render.yaml) as a Render blueprint,
@@ -98,7 +107,7 @@ cd backend && pytest tests/integration -q                  # integration, real D
 cd frontend && npm test                                    # vitest
 ```
 
-28 backend tests and 24 frontend tests. [docs/testing.md](docs/testing.md) explains what
+50 backend tests and 38 frontend tests. [docs/testing.md](docs/testing.md) explains what
 each layer covers and why the split is where it is.
 
 ## Architecture
